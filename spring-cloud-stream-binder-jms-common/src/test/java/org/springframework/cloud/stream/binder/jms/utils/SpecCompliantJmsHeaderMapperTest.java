@@ -15,15 +15,15 @@
  */
 package org.springframework.cloud.stream.binder.jms.utils;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
-
 import com.google.common.collect.ImmutableMap;
-import org.junit.Before;
-import org.junit.Test;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.integration.jms.JmsHeaderMapper;
 import org.springframework.messaging.MessageHeaders;
+
+import javax.jms.JMSException;
+import javax.jms.Message;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -35,7 +35,7 @@ public class SpecCompliantJmsHeaderMapperTest {
 
 	private JmsHeaderMapper jmsHeaderMapper;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		jmsHeaderMapper = new SpecCompliantJmsHeaderMapper();
 	}

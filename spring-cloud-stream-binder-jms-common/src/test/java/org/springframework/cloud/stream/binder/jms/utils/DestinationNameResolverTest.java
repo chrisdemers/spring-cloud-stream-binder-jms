@@ -18,15 +18,14 @@ package org.springframework.cloud.stream.binder.jms.utils;
 
 import java.util.Collection;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import org.springframework.cloud.stream.binder.ConsumerProperties;
 import org.springframework.cloud.stream.binder.ProducerProperties;
 
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author José Carlos Valero
@@ -74,7 +73,7 @@ public class DestinationNameResolverTest {
 	public void resolveNameForProducer_whenPartitioned_returnsTopicWithIndexAndRequiredGroupsWithIndex() throws Exception {
 		ProducerProperties properties = new ProducerProperties();
 		properties.setPartitionCount(2);
-		properties.setPartitionKeyExtractorClass(Object.class); // Irrelevant at this point, yet necessary
+		properties.setPartitionKeyExtractorName("Null"); // Irrelevant at this point, yet necessary
 		properties.setRequiredGroups("requiredGroup1","requiredGroup2");
 
 		Collection<DestinationNames> names = target.resolveTopicAndQueueNameForRequiredGroups("topic", properties);

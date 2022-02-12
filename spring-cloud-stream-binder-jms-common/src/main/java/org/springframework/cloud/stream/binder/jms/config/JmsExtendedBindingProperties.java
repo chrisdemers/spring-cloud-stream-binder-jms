@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.stream.binder.BinderSpecificPropertiesProvider;
 import org.springframework.cloud.stream.binder.ExtendedBindingProperties;
 
 /**
@@ -34,9 +35,16 @@ public class JmsExtendedBindingProperties implements ExtendedBindingProperties<J
 		return bindings;
 	}
 
-	public void setBindings(Map<String, JmsBindingProperties> bindings) {
-		this.bindings = bindings;
+	@Override
+	public String getDefaultsPrefix() {
+		return "jms";
 	}
+
+	@Override
+	public Class<? extends BinderSpecificPropertiesProvider> getExtendedPropertiesEntryClass() {
+		return JmsBindingProperties.class;
+	}
+
 
 	@Override
 	public JmsConsumerProperties getExtendedConsumerProperties(String channelName) {

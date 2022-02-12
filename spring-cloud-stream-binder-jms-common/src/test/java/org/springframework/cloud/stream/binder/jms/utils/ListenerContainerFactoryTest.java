@@ -21,12 +21,12 @@ import javax.jms.Destination;
 import javax.jms.Queue;
 
 import org.hamcrest.core.Is;
-import org.junit.Test;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.jms.listener.AbstractMessageListenerContainer;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.springframework.test.util.ReflectionTestUtils.getField;
 

@@ -16,27 +16,20 @@
 
 package org.springframework.cloud.stream.binder.jms.config;
 
-import javax.jms.ConnectionFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.stream.binder.ExtendedConsumerProperties;
 import org.springframework.cloud.stream.binder.ExtendedProducerProperties;
 import org.springframework.cloud.stream.binder.jms.JMSMessageChannelBinder;
-import org.springframework.cloud.stream.binder.jms.utils.Base64UrlNamingStrategy;
-import org.springframework.cloud.stream.binder.jms.utils.DestinationNameResolver;
-import org.springframework.cloud.stream.binder.jms.utils.JmsMessageDrivenChannelAdapterFactory;
-import org.springframework.cloud.stream.binder.jms.utils.JmsSendingMessageHandlerFactory;
-import org.springframework.cloud.stream.binder.jms.utils.ListenerContainerFactory;
-import org.springframework.cloud.stream.binder.jms.utils.MessageRecoverer;
-import org.springframework.cloud.stream.binder.jms.utils.RepublishMessageRecoverer;
-import org.springframework.cloud.stream.binder.jms.utils.SpecCompliantJmsHeaderMapper;
+import org.springframework.cloud.stream.binder.jms.utils.*;
 import org.springframework.cloud.stream.provisioning.ProvisioningProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.codec.Codec;
 import org.springframework.jms.core.JmsTemplate;
+
+import javax.jms.ConnectionFactory;
 
 /**
  * Configuration class containing required beans in order to set up the JMS
@@ -112,7 +105,6 @@ public class JmsBinderGlobalConfiguration {
 
 			JMSMessageChannelBinder jmsMessageChannelBinder = new JMSMessageChannelBinder(provisioningProvider,
 					jmsSendingMessageHandlerFactory, jmsMessageDrivenChannelAdapterFactory, jmsTemplate, connectionFactory);
-			jmsMessageChannelBinder.setCodec(codec);
 			jmsMessageChannelBinder.setExtendedBindingProperties(jmsExtendedBindingProperties);
 			return jmsMessageChannelBinder;
 		}

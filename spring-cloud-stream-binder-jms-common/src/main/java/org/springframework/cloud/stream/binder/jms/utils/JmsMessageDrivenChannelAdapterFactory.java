@@ -113,8 +113,7 @@ public class JmsMessageDrivenChannelAdapterFactory implements ApplicationContext
 								RetryingChannelPublishingJmsMessageListener.super.onMessage(jmsMessage, session);
 							}
 							catch (JMSException e) {
-								logger.error("Failed to send message",
-										e);
+								logger.error(e, "Failed to send message");
 								resetMessageIfRequired(jmsMessage);
 								throw new RuntimeException(e);
 							}

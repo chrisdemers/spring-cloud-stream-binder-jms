@@ -55,7 +55,8 @@ public class PartitionAwareJmsSendingMessageHandler extends AbstractMessageHandl
 		this.headerMapper = headerMapper;
 	}
 
-	protected void handleMessageInternal(Message<?> message) throws Exception {
+	@Override
+	protected void handleMessageInternal(Message<?> message) {
 		if(message == null) {
 			throw new IllegalArgumentException("message must not be null");
 		}
